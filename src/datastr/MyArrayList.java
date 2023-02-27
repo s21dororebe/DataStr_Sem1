@@ -65,7 +65,7 @@ public class MyArrayList {
 					increaseArray();
 				//4. copy from the end to the right side (using the index)
 				for(int i = elementCounter; i > index; i--) {
-					elements[i] = elements[i--]; 
+					elements[i] = elements[i-1]; 
 				}
 				//5. add the new element in the specified index
 				elements[index] = newElement;
