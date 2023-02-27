@@ -49,7 +49,47 @@ public class MyArrayList {
 		elements = newElements;
 		arraySize = newArraySize;
 	}
-	
+	public void add(char newElement) {
+		if(isFull())
+			increaseArray();
+		elements[elementCounter++] = newElement;// = elements[elementCounter] = newElement; elementCounter++; 
+	}
+	public void add(int index, char newElement) throws Exception {
+		//2. verify the index - is it appropriate
+		if(index >=0 && index <= elementCounter) {
+			if(index == elementCounter)
+				add(newElement);
+			else {
+				//3. verify is full 
+				if(isFull())
+					increaseArray();
+				//4. copy from the end to the right side (using the index)
+				for(int i = elementCounter; i > index; i--) {
+					elements[i] = elements[i--]; 
+				}
+				//5. add the new element in the specified index
+				elements[index] = newElement;
+				//6. increase element counter
+				elementCounter++;
+			}
+		}
+		else {
+			throw (new Exception("Wrong index"));
+		}
+		
+	}
+	public void delete(int index) {
+		if(index <= arraySize)
+			elements[index] = ' ';
+	}
+	public char get(int index) {
+		if(index <= arraySize)
+			return elements[index];
+		return 0;
+	}
+	public char searchTheElement() {
+		return 0;
+	}
 
 
 
