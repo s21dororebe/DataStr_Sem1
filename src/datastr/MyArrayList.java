@@ -115,8 +115,49 @@ public class MyArrayList {
 		}
 		return false;
 	}
+	public char takeNext(char name) throws Exception {
+		int index = 0;
+		//meklejam, vai tads elements eksiste
+		if(!search(name))
+			throw (new Exception("This element is not in the array"));
+		//meklejam, kuraa vietaa atrodas elements
+		for(int i = 0; i < elementCounter; i++) {
+			if(elements[i] == name) 
+				//atradam un piefiksejam indeksu
+				index = i;
+		}
+		//pec indeksa atgriezam nakamo elementu
+		return elements[index+1];
+	}
 
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 
