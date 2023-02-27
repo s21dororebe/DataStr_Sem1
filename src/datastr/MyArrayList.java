@@ -108,26 +108,53 @@ public class MyArrayList {
 		else
 			throw (new Exception("Wrong index"));
 	}
-	public boolean search(char name) {
-		for(int i = 0; i < elementCounter; i++) {
-			if(elements[i] == name)
+	public boolean search(char inputElement) {
+		for(int i = 0; i < elementCounter; i++) 
+			if(elements[i] == inputElement)
 				return true;
-		}
 		return false;
 	}
-	public char takeNext(char name) throws Exception {
+	
+	//TODO takeNext
+	//TODO sort
+	//TODO print
+	//TODO makeEmpty
+	
+	//TODO papildinaat funkciju
+	public char takeNext(char inputElement) throws Exception {
 		int index = 0;
 		//meklejam, vai tads elements eksiste
-		if(!search(name))
+		if(!search(inputElement))
 			throw (new Exception("This element is not in the array"));
 		//meklejam, kuraa vietaa atrodas elements
 		for(int i = 0; i < elementCounter; i++) {
-			if(elements[i] == name) 
+			if(elements[i] == inputElement) 
 				//atradam un piefiksejam indeksu
 				index = i;
 		}
 		//pec indeksa atgriezam nakamo elementu
 		return elements[index+1];
+	}
+	
+	public void print() throws Exception {
+		if(!isEmpty()) {
+			for(int i = 0; i < elementCounter; i++) {
+				System.out.print(elements[i] + " ");
+			}
+			System.out.println();
+		}
+		else 
+			throw (new Exception("This array is empty"));
+			
+	}
+	public void makeEmpty() throws Exception {
+		if(!isEmpty()) {
+			arraySize = DEFAULT_ARRAY_SIZE;
+			elementCounter = 0;
+			elements = new char[arraySize];
+		}
+		else
+			throw (new Exception("This array is empty"));
 	}
 
 
