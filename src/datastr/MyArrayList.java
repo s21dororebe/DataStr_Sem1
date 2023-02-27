@@ -37,6 +37,18 @@ public class MyArrayList {
 	{
 		return (elementCounter == 0);
 	}
+	public int howManyElements() {
+		return elementCounter;
+	}
+	private void increaseArray() {
+		int newArraySize = (arraySize > 100)? (int)(arraySize*1.5) : arraySize*2;
+		char[] newElements = new char[newArraySize];
+		for(int i = 0; i < arraySize; i++) {
+			newElements[i] = elements[i];
+		}
+		elements = newElements;
+		arraySize = newArraySize;
+	}
 	
 
 
