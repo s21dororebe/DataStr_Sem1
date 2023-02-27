@@ -97,18 +97,23 @@ public class MyArrayList {
 		else 
 			throw (new Exception("Wrong index"));
 			
-		
-		
-		
-			
 	}
-	public char get(int index) {
-		if(index <= arraySize)
+	public char get(int index) throws Exception {
+		//verify is empty
+		if(isEmpty()) 
+			throw (new Exception("This array is empty"));
+		//verify the index - is it appropriate
+		if(index >= 0 && index < elementCounter)
 			return elements[index];
-		return 0;
+		else
+			throw (new Exception("Wrong index"));
 	}
-	public char searchTheElement() {
-		return 0;
+	public boolean search(char name) {
+		for(int i = 0; i < elementCounter; i++) {
+			if(elements[i] == name)
+				return true;
+		}
+		return false;
 	}
 
 
