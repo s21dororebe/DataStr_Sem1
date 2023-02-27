@@ -78,9 +78,29 @@ public class MyArrayList {
 		}
 		
 	}
-	public void delete(int index) {
-		if(index <= arraySize)
-			elements[index] = ' ';
+	public void remove(int index) throws Exception {
+		//verify is empty
+		if(isEmpty()) 
+			throw (new Exception("This array is empty"));
+		//verify the index - is it appropriate
+		if(index >= 0 && index < elementCounter) {
+			if(elements[index] != ' ') {
+				for(int i = index; i < elementCounter-1; i++) {
+					elements[i] = elements[i+1];
+				}
+				elements[--elementCounter] = 0;
+			} 
+			else 
+				throw (new Exception("This field is empty"));
+			
+		}
+		else 
+			throw (new Exception("Wrong index"));
+			
+		
+		
+		
+			
 	}
 	public char get(int index) {
 		if(index <= arraySize)
