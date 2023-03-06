@@ -115,12 +115,49 @@ public class MyArrayList {
 		return false;
 	}
 	
-	//TODO takeNext
 	//TODO sort
-	//TODO print
-	//TODO makeEmpty
+	public char[] sort(SortingType type) throws Exception {
+		if(isEmpty()){
+			throw (new Exception("This array is empty"));
+		}
+		else
+		{
+			char[] sortedArray = new char[elementCounter];
+			for (int i = 0; i < elementCounter; i++){
+				sortedArray[i] = elements[i];
+			}
+			///ascending order
+			if(type == SortingType.ASC){
+				for(int i = 0; i < elementCounter; i++){
+					for(int j = 0; j < elementCounter-1; j++){
+						if(elements[i] > elements[j]){
+							char temp = sortedArray[i];
+							sortedArray[i] = sortedArray[j];
+							sortedArray[j] = temp;
+						}
+					}
+				}
+			}
+			//descending order
+			else if(type == SortingType.DESC){
+				for(int i = 0; i < elementCounter; i++){
+					for(int j = 0; j < elementCounter-1; j++){
+						if(elements[i] < elements[j]){
+							char temp = sortedArray[i];
+							sortedArray[i] = sortedArray[j];
+							sortedArray[j] = temp;
+						}
+					}
+				}
+			}
+			else {
+				throw (new Exception("Wrong sorting type!"));
+			}
+			return sortedArray;
+		}
+
+	}
 	
-	//TODO papildinaat funkciju
 	public char[] retrieveNextNeighbours(char inputElement) throws Exception {
 		if(search(inputElement)) {
 			int howManySearchedElements = 0;
@@ -146,7 +183,6 @@ public class MyArrayList {
 			throw (new Exception("This element is not in the array"));
 		}
 	}
-	
 	public void print() throws Exception {
 		if(!isEmpty()) {
 			for(int i = 0; i < elementCounter; i++) {
