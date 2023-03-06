@@ -1,23 +1,23 @@
 package datastr;
 
-public class MyArrayList {
-	private char[] elements;
+public class MyArrayList<T> {
+	private T[] elements;
 	private final int DEFAULT_ARRAY_SIZE = 6;
 	private int arraySize = DEFAULT_ARRAY_SIZE;
 	private int elementCounter = 0;
-	
+
 	//no args constructor
-	public MyArrayList() 
-	{	
-		elements = new char[arraySize]; //array with the size 6 (DEFAULT_ARRAY_SIZE)
+	public MyArrayList()
+	{
+		elements = (T[]) new Object[arraySize]; //array with the size 6 (DEFAULT_ARRAY_SIZE)
 	}
 	//args constructor
-	public MyArrayList(int inputArraySize) 
+	public MyArrayList(int inputArraySize)
 	{
 		if(inputArraySize > 0) {
 			arraySize = inputArraySize;
 		}
-		elements = new char[arraySize];
+		elements = (T[]) new Object[arraySize];
 	}
 	public boolean isFull()
 	{
@@ -41,30 +41,30 @@ public class MyArrayList {
 	}
 	private void increaseArray() {
 		int newArraySize = (arraySize > 100)? (int)(arraySize*1.5) : arraySize*2;
-		char[] newElements = new char[newArraySize];
+		T[] newElements = (T[]) new Object[newArraySize];
 		for(int i = 0; i < arraySize; i++) {
 			newElements[i] = elements[i];
 		}
 		elements = newElements;
 		arraySize = newArraySize;
 	}
-	public void add(char newElement) {
+	public void add(T newElement) {
 		if(isFull())
 			increaseArray();
-		elements[elementCounter++] = newElement;// = elements[elementCounter] = newElement; elementCounter++; 
+		elements[elementCounter++] = newElement;// = elements[elementCounter] = newElement; elementCounter++;
 	}
-	public void add(char newElement, int index) throws Exception {
+	public void add(T newElement, int index) throws Exception {
 		//2. verify the index - is it appropriate
 		if(index >=0 && index <= elementCounter) {
 			if(index == elementCounter)
 				add(newElement);
 			else {
-				//3. verify is full 
+				//3. verify is full
 				if(isFull())
 					increaseArray();
 				//4. copy from the end to the right side (using the index)
 				for(int i = elementCounter; i > index; i--) {
-					elements[i] = elements[i-1]; 
+					elements[i] = elements[i-1];
 				}
 				//5. add the new element in the specified index
 				elements[index] = newElement;
@@ -75,31 +75,33 @@ public class MyArrayList {
 		else {
 			throw (new Exception("Wrong index"));
 		}
-		
+
 	}
+    /**
 	public void remove(int index) throws Exception {
 		//verify is empty
-		if(isEmpty()) 
+		if(isEmpty())
 			throw (new Exception("This array is empty"));
 		//verify the index - is it appropriate
 		if(index >= 0 && index < elementCounter) {
+			//TODO fix problem
 			if(elements[index] != ' ') {
 				for(int i = index; i < elementCounter-1; i++) {
 					elements[i] = elements[i+1];
 				}
-				elements[--elementCounter] = 0;
-			} 
-			else 
+				elements[--elementCounter] = null;
+			}
+			else
 				throw (new Exception("This field is empty"));
-			
+
 		}
-		else 
+		else
 			throw (new Exception("Wrong index"));
-			
-	}
-	public char retrieve(int index) throws Exception {
+
+	}*/
+	public T retrieve(int index) throws Exception {
 		//verify is empty
-		if(isEmpty()) 
+		if(isEmpty())
 			throw (new Exception("This array is empty"));
 		//verify the index - is it appropriate
 		if(index >= 0 && index < elementCounter)
@@ -107,68 +109,56 @@ public class MyArrayList {
 		else
 			throw (new Exception("Wrong index"));
 	}
-	public boolean search(char inputElement) {
-		for(int i = 0; i < elementCounter; i++) 
-			if(elements[i] == inputElement)
+	public boolean search(T inputElement) {
+		for(int i = 0; i < elementCounter; i++)
+			if(elements[i].equals(inputElement))
 				return true;
 		return false;
 	}
-	public char[] sort(SortingType type) throws Exception {
+	public T[] sort(SortingType type) throws Exception {
 		if(isEmpty()){
 			throw (new Exception("This array is empty"));
 		}
 		else
 		{
-			char[] sortedArray = new char[elementCounter];
+			T[] sortedArray = (T[]) new Object[elementCounter];
 			for (int i = 0; i < elementCounter; i++){
 				sortedArray[i] = elements[i];
 			}
-			///ascending order
+			int sortVariable = 1;
 			if(type == SortingType.ASC){
-				for(int i = 0; i < elementCounter; i++){
-					for(int j = 0; j < elementCounter-1; j++){
-						if(sortedArray[i] < sortedArray[j]){
-							char temp = sortedArray[i];
-							sortedArray[i] = sortedArray[j];
-							sortedArray[j] = temp;
-						}
+				sortVariable = -1;
+			}
+			for(int i = 0; i < elementCounter; i++){
+				for(int j = 0; j < elementCounter-1; j++){
+					//if(sortedArray[i] < sortedArray[j]){
+					if(((Comparable)(sortedArray[i])).compareTo(sortedArray[j]) == sortVariable){
+						T temp = sortedArray[i];
+						sortedArray[i] = sortedArray[j];
+						sortedArray[j] = temp;
 					}
 				}
 			}
-			//descending order
-			else if(type == SortingType.DESC){
-				for(int i = 0; i < elementCounter; i++){
-					for(int j = 0; j < elementCounter-1; j++){
-						if(sortedArray[i] > sortedArray[j]){
-							char temp = sortedArray[i];
-							sortedArray[i] = sortedArray[j];
-							sortedArray[j] = temp;
-						}
-					}
-				}
-			}
-			else {
-				throw (new Exception("Wrong sorting type!"));
-			}
+
 			return sortedArray;
 		}
 
 	}
-	public char[] retrieveNextNeighbours(char inputElement) throws Exception {
+	public T[] retrieveNextNeighbours(T inputElement) throws Exception {
 		if(search(inputElement)) {
 			int howManySearchedElements = 0;
 			for(int i = 0 ; i < elementCounter; i++){
-				if(elements[i] == inputElement){
+				if(elements[i].equals(inputElement)){
 					howManySearchedElements++;
 				}
 			}
-			if(elements[elementCounter-1] == inputElement)
+			if(elements[elementCounter-1].equals(inputElement))
 				howManySearchedElements--;
 
-			char [] nextNeghbours = new char [howManySearchedElements];
+			T [] nextNeghbours = (T[]) new Object [howManySearchedElements];
 			int indexForNeighbours = 0;
 			for(int i = 0; i < elementCounter-1; i++){
-				if(elements[i] == inputElement){
+				if(elements[i].equals(inputElement)){
 					nextNeghbours[indexForNeighbours] = elements[i+1];
 					indexForNeighbours++;
 				}
@@ -186,48 +176,48 @@ public class MyArrayList {
 			}
 			System.out.println();
 		}
-		else 
+		else
 			throw (new Exception("This array is empty"));
-			
+
 	}
 	public void makeEmpty() throws Exception {
 		if(!isEmpty()) {
 			arraySize = DEFAULT_ARRAY_SIZE;
 			elementCounter = 0;
-			elements = new char[arraySize];
+			elements = (T[]) new Object[arraySize];
 		}
 		else
 			throw (new Exception("This array is empty"));
 	}
 
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
