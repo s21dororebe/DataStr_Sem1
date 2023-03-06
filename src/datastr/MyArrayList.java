@@ -22,15 +22,14 @@ public class MyArrayList {
 	public boolean isFull()
 	{
 		//long if-else
-		/**if(elementCounter == arraySize) {
-			return true;
-		} else {
-			return false;
-		}*/
+//		if(elementCounter == arraySize) {
+//			return true;
+//		} else {
+//			return false;
+//		}
 		//short if-else
 		//kopejais (if izteiksme)           ? ko darit true : ko darit false gadijumaa;
 		//return (elementCounter == arraySize)? true          : false;
-		
 		return (elementCounter == arraySize);
 	}
 	public boolean isEmpty()
@@ -54,7 +53,7 @@ public class MyArrayList {
 			increaseArray();
 		elements[elementCounter++] = newElement;// = elements[elementCounter] = newElement; elementCounter++; 
 	}
-	public void add(int index, char newElement) throws Exception {
+	public void add(char newElement, int index) throws Exception {
 		//2. verify the index - is it appropriate
 		if(index >=0 && index <= elementCounter) {
 			if(index == elementCounter)
@@ -98,7 +97,7 @@ public class MyArrayList {
 			throw (new Exception("Wrong index"));
 			
 	}
-	public char get(int index) throws Exception {
+	public char retrieve(int index) throws Exception {
 		//verify is empty
 		if(isEmpty()) 
 			throw (new Exception("This array is empty"));
@@ -114,8 +113,6 @@ public class MyArrayList {
 				return true;
 		return false;
 	}
-	
-	//TODO sort
 	public char[] sort(SortingType type) throws Exception {
 		if(isEmpty()){
 			throw (new Exception("This array is empty"));
@@ -130,7 +127,7 @@ public class MyArrayList {
 			if(type == SortingType.ASC){
 				for(int i = 0; i < elementCounter; i++){
 					for(int j = 0; j < elementCounter-1; j++){
-						if(elements[i] > elements[j]){
+						if(sortedArray[i] < sortedArray[j]){
 							char temp = sortedArray[i];
 							sortedArray[i] = sortedArray[j];
 							sortedArray[j] = temp;
@@ -142,7 +139,7 @@ public class MyArrayList {
 			else if(type == SortingType.DESC){
 				for(int i = 0; i < elementCounter; i++){
 					for(int j = 0; j < elementCounter-1; j++){
-						if(elements[i] < elements[j]){
+						if(sortedArray[i] > sortedArray[j]){
 							char temp = sortedArray[i];
 							sortedArray[i] = sortedArray[j];
 							sortedArray[j] = temp;
@@ -157,7 +154,6 @@ public class MyArrayList {
 		}
 
 	}
-	
 	public char[] retrieveNextNeighbours(char inputElement) throws Exception {
 		if(search(inputElement)) {
 			int howManySearchedElements = 0;
