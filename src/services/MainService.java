@@ -33,6 +33,17 @@ public class MainService {
             charList1.makeEmpty();
             charList1.add('d');
             charList1.print(); //d
+            System.out.println();
+            System.out.println("Number list");
+            MyArrayList numberList = getArrayElementsFromFile("resources/numbers.txt");
+            numberList.print();
+            numberList.add('r');
+            numberList.print();
+            numberList.remove(2);
+            numberList.print();
+            numberList.add('a');
+            numberList.add('c');
+            System.out.println(Arrays.toString(numberList.sort(SortingType.ASC)));
         }
         catch (Exception e){
             System.out.println(e);
