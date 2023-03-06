@@ -28,7 +28,7 @@ public class MainService {
             charList1.add('l'); //a, d, r, i, k, l
             charList1.add('u'); //a, d, r, i, k, l, u increase() will be called
             System.out.println(Arrays.toString(charList1.retrieveNextNeighbours('i')));
-            System.out.println(charList1.sort(SortingType.ASC)); //a d i k l r
+            System.out.println(Arrays.toString(charList1.sort(SortingType.ASC))); //a d i k l r
             charList1.print(); //a, d, r, i, k, l
             charList1.makeEmpty();
             charList1.add('d');
