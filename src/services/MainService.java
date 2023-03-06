@@ -2,6 +2,8 @@ package services;
 
 import datastr.MyArrayList;
 import datastr.SortingType;
+import model.Faculty;
+import model.Student;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,7 +21,7 @@ public class MainService {
             charList1.add('h', 0); //h, a, d, r
             charList1.print();
             System.out.println(charList1.howManyElements()); //4
-            charList1.remove(1);
+//            charList1.remove(1);
             charList1.print(); //h, d, r
             System.out.println(charList1.retrieve(1)); //d
             System.out.println("Search: " + charList1.search('d')); //true
@@ -33,17 +35,48 @@ public class MainService {
             charList1.makeEmpty();
             charList1.add('d');
             charList1.print(); //d
+
             System.out.println();
             System.out.println("Number list");
             MyArrayList numberList = getArrayElementsFromFile("resources/numbers.txt");
             numberList.print();
             numberList.add('r');
             numberList.print();
-            numberList.remove(2);
+//            numberList.remove(2);
             numberList.print();
             numberList.add('a');
             numberList.add('c');
             System.out.println(Arrays.toString(numberList.sort(SortingType.ASC)));
+
+            System.out.println();
+            System.out.println("String list");
+            MyArrayList<String> stringList = new MyArrayList<>();
+            stringList.add("def");
+            stringList.add("abc");
+            stringList.add("bbb");
+            stringList.add("ghf");
+            stringList.add("kkk");
+            stringList.add("hhh");
+            stringList.print();
+            System.out.println(Arrays.toString(stringList.sort(SortingType.ASC)));
+            //TODO
+            //stringList.remove(2);
+
+            System.out.println();
+            System.out.println("Student list");
+            MyArrayList<Student> studentList = new MyArrayList<>();
+            studentList.add(new Student("Rebeka", "Tretjaka", "300832-21656", Faculty.ITF));
+            studentList.add(new Student("Ieva", "Berzina", "220565-32565", Faculty.EPF));
+            studentList.add(new Student("Elza", "Janina", "025630-36484", Faculty.TSF));
+            studentList.print();
+            studentList.add(new Student("Elza", "Janina", "025630-36484", Faculty.TSF));
+            studentList.print();
+            //TODO
+            //studentList.remove(2);
+            System.out.println(Arrays.toString(studentList.sort(SortingType.ASC)));
+            studentList.print();
+
+
         }
         catch (Exception e){
             System.out.println(e);

@@ -125,7 +125,7 @@ public class MyArrayList<T> {
 			for (int i = 0; i < elementCounter; i++){
 				sortedArray[i] = elements[i];
 			}
-			int sortVariable = 1;
+			int sortVariable = 1; //DESC
 			if(type == SortingType.ASC){
 				sortVariable = -1;
 			}
