@@ -121,19 +121,30 @@ public class MyArrayList {
 	//TODO makeEmpty
 	
 	//TODO papildinaat funkciju
-	public char takeNext(char inputElement) throws Exception {
-		int index = 0;
-		//meklejam, vai tads elements eksiste
-		if(!search(inputElement))
-			throw (new Exception("This element is not in the array"));
-		//meklejam, kuraa vietaa atrodas elements
-		for(int i = 0; i < elementCounter; i++) {
-			if(elements[i] == inputElement) 
-				//atradam un piefiksejam indeksu
-				index = i;
+	public char[] retrieveNextNeighbours(char inputElement) throws Exception {
+		if(search(inputElement)) {
+			int howManySearchedElements = 0;
+			for(int i = 0 ; i < elementCounter; i++){
+				if(elements[i] == inputElement){
+					howManySearchedElements++;
+				}
+			}
+			if(elements[elementCounter-1] == inputElement)
+				howManySearchedElements--;
+
+			char [] nextNeghbours = new char [howManySearchedElements];
+			int indexForNeighbours = 0;
+			for(int i = 0; i < elementCounter-1; i++){
+				if(elements[i] == inputElement){
+					nextNeghbours[indexForNeighbours] = elements[i+1];
+					indexForNeighbours++;
+				}
+			}
+			return nextNeghbours;
 		}
-		//pec indeksa atgriezam nakamo elementu
-		return elements[index+1];
+		else {
+			throw (new Exception("This element is not in the array"));
+		}
 	}
 	
 	public void print() throws Exception {
