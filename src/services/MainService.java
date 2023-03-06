@@ -21,7 +21,7 @@ public class MainService {
             charList1.add('h', 0); //h, a, d, r
             charList1.print();
             System.out.println(charList1.howManyElements()); //4
-//            charList1.remove(1);
+            charList1.remove(1);
             charList1.print(); //h, d, r
             System.out.println(charList1.retrieve(1)); //d
             System.out.println("Search: " + charList1.search('d')); //true
@@ -42,7 +42,7 @@ public class MainService {
             numberList.print();
             numberList.add('r');
             numberList.print();
-//            numberList.remove(2);
+            numberList.remove(2);
             numberList.print();
             numberList.add('a');
             numberList.add('c');
@@ -59,8 +59,8 @@ public class MainService {
             stringList.add("hhh");
             stringList.print();
             System.out.println(Arrays.toString(stringList.sort(SortingType.ASC)));
-            //TODO
-            //stringList.remove(2);
+            stringList.remove(2);
+            stringList.print();
 
             System.out.println();
             System.out.println("Student list");
@@ -71,11 +71,10 @@ public class MainService {
             studentList.print();
             studentList.add(new Student("Elza", "Janina", "025630-36484", Faculty.TSF));
             studentList.print();
-            //TODO
-            //studentList.remove(2);
+            studentList.remove(2);
+            studentList.print();
             System.out.println(Arrays.toString(studentList.sort(SortingType.ASC)));
             studentList.print();
-
 
         }
         catch (Exception e){

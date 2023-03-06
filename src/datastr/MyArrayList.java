@@ -77,28 +77,29 @@ public class MyArrayList<T> {
 		}
 
 	}
-    /**
+
 	public void remove(int index) throws Exception {
 		//verify is empty
-		if(isEmpty())
+		if(isEmpty()) {
 			throw (new Exception("This array is empty"));
-		//verify the index - is it appropriate
-		if(index >= 0 && index < elementCounter) {
-			//TODO fix problem
-			if(elements[index] != ' ') {
+		}
+		else
+		{
+			//verify the index - is it appropriate
+			if(index < 0 || index >= elementCounter) {
+				throw (new Exception("This field is empty"));
+			}
+			else
+			{
 				for(int i = index; i < elementCounter-1; i++) {
 					elements[i] = elements[i+1];
 				}
 				elements[--elementCounter] = null;
 			}
-			else
-				throw (new Exception("This field is empty"));
 
 		}
-		else
-			throw (new Exception("Wrong index"));
+	}
 
-	}*/
 	public T retrieve(int index) throws Exception {
 		//verify is empty
 		if(isEmpty())
